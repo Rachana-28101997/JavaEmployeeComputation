@@ -38,7 +38,7 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 
 		while (company.numbOfWorkingDays >= currentWorkingday && company.numbWorkingHrs >= currentWorkingHour) {
 			int random = (int) Math.floor(Math.random() * 10) % 3;
-			System.out.println(random);
+
 			switch (random) {
 			case FULL_TIME:
 				workingHr = 8;
@@ -56,6 +56,8 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 //                       System.out.println("Daily salary for "+company.company+" "+salary);
 
 			totalSalary += salary;
+			wageOnDailyBasis(currentWorkingday, workingHr, totalSalary);
+
 		}
 		System.out.println("Total computed salary for " + company.company + " " + totalSalary);
 
@@ -70,7 +72,7 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 
 		for (int i = 0; i < n; i++) {
 			String company = "";
-			int wagePerHr = 0;
+			int workPerHr = 0;
 			int numbOfWorkingDays = 0;
 			int numbWorkingHrs = 0;
 
@@ -78,8 +80,8 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 			System.out.println("please enter company name:");
 			company = sc1.nextLine();
 
-			System.out.println("please enter wagePerHr:");
-			wagePerHr = sc1.nextInt();
+			System.out.println("please enter workPerHr:");
+			workPerHr = sc1.nextInt();
 
 			System.out.println("please enter numberofworkingdays:");
 			numbOfWorkingDays = sc1.nextInt();
@@ -87,7 +89,7 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 			System.out.println("please enter numberofworkingHrs:");
 			numbWorkingHrs = sc1.nextInt();
 
-			Company com = new Company(company, wagePerHr, numbOfWorkingDays, numbWorkingHrs);
+			Company com = new Company(company, workPerHr, numbOfWorkingDays, numbWorkingHrs);
 			companyDetails.add(com);
 
 		}
@@ -125,4 +127,10 @@ public class EmployeeWageComputation implements EmployeeWageComp {
 		}
 
 	}
+
+	public void wageOnDailyBasis(int currentWorkingday, int workingHr, int totalSalary) {
+		System.out.println(
+				workingHr + " Hrs worked on Day " + currentWorkingday + ", wage of employee is " + totalSalary);
+	}
+
 }
