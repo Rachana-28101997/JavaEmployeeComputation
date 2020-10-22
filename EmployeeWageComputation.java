@@ -1,40 +1,55 @@
-public class EmployeeWageComputation
-{
-        static final int IS_FULL_TIME=1,IS_PART_TIME=2,WAGE_PER_HR=20,WORKING_DAYS=20;
-        static final int MAX_WORKING_HRS=100;
-        public static void main(String[] args)
-        {
+public class EmployeeWageComputation {
+	static final int IS_FULL_TIME = 1, IS_PART_TIME = 2;
 
-                int workingHrs=0,salary,totalSalary=0;
-                for(int day=1;day<=WORKING_DAYS;day++)
-		System.out.println("WELCOME TO EMPLOYEE WAGE COMPUTATION");
-                int workingHrs=0,salary,totalSalary=0,totalWorkingHrs=0,totalWorkingDays=0;
-                while (totalWorkingDays < WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
-                {
-                        totalWorkingDays++;
-                        int random=(int)Math.floor(Math.random()*10)%3;
+	public void computeEmpWage(String company, int wagePerHr, int numOfWorkingDays, int maxHoursPerMonth) {
+		int workingHrs = 0, totalSalary = 0, totalWorkingHrs = 0, totalWorkingDays = 0;
+		while (totalWorkingDays < numOfWorkingDays && totalWorkingHrs <= maxHoursPerMonth) {
+			totalWorkingDays++;
+			int random = (int) Math.floor(Math.random() * 10) % 3;
+			while (totalWorkingDays < numOfWorkingDays && totalWorkingHrs <= maxHoursPerMonth) {
+				totalWorkingDays++;
 
-                        switch(random)
-                        {
-                                case IS_PART_TIME:
-                                                                workingHrs=4;
-                                                                break;
-                                case IS_FULL_TIME:
-                                                                workingHrs=8;
-                                                                break;
-                                default:
-                                                                workingHrs=0;
-                        }
+				switch (random) {
+				case IS_PART_TIME:
+					workingHrs = 4;
+					break;
+				case IS_FULL_TIME:
+					workingHrs = 8;
+					break;
+				default:
+					workingHrs = 0;
+				}
+				totalWorkingHrs += workingHrs;
+				System.out
+						.println("Emp totalWorkingHrs:" + totalWorkingHrs + "Emp totalWorkingDays:" + totalWorkingDays);
+			}
+			totalSalary = totalWorkingHrs * wagePerHr;
+			switch (random) {
+			case IS_PART_TIME:
+				workingHrs = 4;
+				break;
+			case IS_FULL_TIME:
+				workingHrs = 8;
+				break;
+			default:
+				workingHrs = 0;
+			}
+			totalWorkingHrs += workingHrs;
+			System.out.println("Emp totalWorkingHrs:" + totalWorkingHrs + "Emp totalWorkingDays:" + totalWorkingDays);
+		}
+		totalSalary = totalWorkingHrs * wagePerHr;
 
-                        salary=WAGE_PER_HR*workingHrs;
-                        totalSalary+=salary;
-                        totalWorkingHrs +=workingHrs;
-                        System.out.println("Emp totalWorkingHrs:" +totalWorkingHrs + "Emp totalWorkingDays:" +totalWorkingDays);
-                }
+		System.out.println("Employee Wage For Company: " + company + " is: " + totalSalary);
+		System.out.println("Employee Wage For Company: " + company + " is: " + totalSalary);
+	}
 
-                totalSalary=totalWorkingHrs*WAGE_PER_HR;
+	public static void main(String[] args) {
+		EmployeeWageComputation emp = new EmployeeWageComputation();
 
-                System.out.println("Employee Earns "+totalSalary+" This Month");
+		emp.computeEmpWage("HP", 20, 20, 50);
+		emp.computeEmpWage("BridgeLabs", 30, 20, 50);
+		emp.computeEmpWage("HP", 20, 20, 50);
+		emp.computeEmpWage("BridgeLabs", 30, 20, 50);
 
-        }
+	}
 }
